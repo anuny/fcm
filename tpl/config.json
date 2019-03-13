@@ -1,0 +1,26 @@
+{
+  "author":{
+    "name":"anuny",
+    "description":"...",
+    "mail":"xxx@xxx.com"
+  },
+  "site":{
+    "title": "fcm - blog",
+    "subtitle": "sample blog",
+    "slogen":"static blog...",
+    "keywords": "blog,node,static",
+    "description": "simple static blog generator",
+    "url":"http://localhost:8080/"
+  },
+  "menus":[
+    {"type":"index","title":"home"},
+    {"type":"page","name":"about","title":"about"},
+    {"type":"link","name":"about","title":"google","url":"http://google.com"}
+  ],
+  "pageSize": 5,
+  "theme":"default",
+  "filter": [],
+  "extName":".html",
+  "minify":true,
+  "port":8080
+}
