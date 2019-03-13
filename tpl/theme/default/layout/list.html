@@ -1,0 +1,45 @@
+<div class="article-list">
+	{% for key, post in posts %}
+	<div class="article-list-entry">
+    <div class="post-main">
+      <h2 class="post-title"><a href="{{ post.url }}">{{ post.info.title }}</a></h2>
+      <div class="markdown-body sketch">
+      {% if post.info.type=="photo" %}
+        <div class="waterfall">{% autoescape false %}{{ post.excerpt||post.content }}{% endautoescape %}</div>
+      {% else %}
+        {% autoescape false %}{{ post.excerpt||post.content }}{% endautoescape %}
+      {% endif %}
+      </div>
+      {% if post.excerpt %}<a href="{{ post.url }}" title="阅读剩余部分" class="post-more">......</a>{% endif %}
+    </div>
+		<div class="aside">
+		  <ul class="h-m">
+        <li>
+          <span class="lunar-calendar">{{post.info.date|date('Y-m-d')}}</span><i class="icon icon-date"></i>
+        </li>
+        <!--
+        <li>15456<i class="icon icon-view"></i></li>
+        <li><a href="#">354</a><i class="icon icon-comment"></i></li>
+        -->
+	    </ul>
+      <ul class="category h-m">
+        <li><a href="{{post.category.url}}">{{post.category.title}}</a><i class="icon icon-category"></i></li>
+      </ul>
+      <ul class="tag h-m">
+      	{% for key, tag in post.tag %}
+      		<li><a href="{{tag.url}}">{{tag.title}}</a><i class="icon icon-tag"></i></li>
+				{% endfor %}
+      </ul>
+		</div>
+  </div>
+  {% endfor %}
+</div>
+{% if pagination.count>1 %}
+<ol class="page-navigator">
+  <li class="prev">{% if pagination.prev %}<a href="{{pagination.prev.url}}">上一页</a>{% else %}上一页</li>{% endif %}
+  {% for key, page in pagination.pages %}
+  <li>{% if page.url %}<a href="{{page.url}}" {% if page.active %} class="active"{% endif %} >{{page.num}}</a>{% else %}{{page.num}}{% endif %}</li>
+  {% endfor %}
+  <li class="next">{% if pagination.next %}<a href="{{pagination.next.url}}">下一页</a>{% else %}下一页</li>{% endif %}
+</ol>
+{% endif %}

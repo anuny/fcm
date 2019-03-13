@@ -1,0 +1,44 @@
+{%- extends "layout/layout.html" %}
+{%- block container %}
+<div class="archives">
+  <div class="aside">
+    <ul class="cat">
+      <h3>文章分类</h3>
+      {% for key, category in categories %}
+			  <li><a href="{{ category.url }}">{{ category.title }}</a> [{{category.posts.length}}]</li>
+			{% endfor %}
+    </ul>
+    <ul class="tag">
+      <h3>文章标签</h3>
+      {% for key, tag in tags %}
+			  <a href="{{ tag.url }}" title="{{tag.posts.length}}篇文章">{{ tag.title }}</a>
+			{% endfor %}
+    </ul>
+    <ul>
+      <h3>RSS订阅</h3>
+      <li><a href="tags.html">文章RSS</a></li>
+      <li><a href="tags.html">评论RSS</a></li>
+    </ul>
+  </div>
+  <div class="post-main post-content">
+    <div class="main">
+    	{% for key, archive in archives %}
+    		<ul id="archive-{{archive.name}}">
+				  <h3>{{ archive.title }}</h3>
+					{% for i, post in archive.posts %}
+				  	<li><time>{{post.info.date|date('m-d')}}</time>: <a href="{{ post.url }}">{{ post.info.title }}</a><sup>[{{post.category.title}}]</sup></li>
+					{% endfor %}
+				</ul>
+			{% endfor %}
+    </div>
+    <div class="year">
+      <ul>
+      	{% for key, archive in archives %}
+				  <li><a href="#archive-{{archive.name}}">{{ archive.title }}年</a></li>
+				{% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="clear"></div>
+{% endblock -%}

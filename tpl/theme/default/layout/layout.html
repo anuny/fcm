@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-cmn-Hans" uid="{{id}}" source="{{site.assets}}/{{id}}/index.md">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Cache-Control" content="no-siteApp" />
+	<title>{{seo.title}}</title>
+	<meta name="author" content="anuny,http://yangfei.name" />
+	<meta name="copyright" content="{{site.url}}" />
+	<meta name="keywords" content="{{seo.keywords}}" />
+	<meta name="description" content="{{seo.description}}">
+	<meta name="robots" content="index,follow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" >
+	<meta name="format-detection" content="telephone=no">
+	<link href="" rel="apple-touch-icon-precomposed">
+	<link href="" rel="shortcut icon" />
+	<!-- 预加载文件 -->
+	<link href="{{site.assets}}/static/js/app.js?v=1.0.0" rel="preload" as="script">
+	<script type="text/javascript">
+	(function() {
+		var docEl = document.documentElement,
+			baseFont = "Arial",
+			text = "字",
+			dSize = 100,
+			canvas = document.createElement("canvas"),
+			context = canvas.getContext("2d");
+		canvas.width = dSize;
+		canvas.height = dSize;
+		context.textAlign = "center";
+		context.fillStyle = "black";
+		context.textBaseline = "middle";
+		if (spFont('KaiTi')) {
+			addCls(docEl, 'font-kaiti')
+		}
+		if (spFont('SimSun')) {
+			addCls(docEl, 'font-simsun')
+		}
+		var arr;
+		if (arr = document.cookie.match(/(^| )isDk=([^;]*)(;|$)/)) {
+			if (unescape(arr[2]) === 'true') {
+				addCls(docEl, 'color-dark')
+			}
+		}
+		function addCls(el, cls) {
+			cls = cls.trim();
+			var className = el.className;
+			if (!new RegExp("(\\s|^)" + cls + "(\\s|$)").test(el.className)) {
+				el.className = (el.className.trim() + ' ' + cls).trim()
+			}
+		}
+		function spFont(font) {
+			return check(baseFont).join("") !== check(font).join("")
+		}
+		function check(j) {
+			context.clearRect(0, 0, dSize, dSize);
+			context.font = dSize + "px " + j + ", " + baseFont;
+			context.fillText(text, dSize / 2, dSize / 2);
+			var data = context.getImageData(0, 0, dSize, dSize).data;
+			return [].slice.call(data).filter(function(item){
+				return item != 0
+			})
+		}
+	})();
+	</script>
+	<link href="{{site.assets}}/static/css/app.css?1.0.0" rel="stylesheet">
+</head>
+<body>
+{% include "header.html" %}
+<!-- container -->
+<div class="container">
+  {%- block container %}{%- endblock %}
+</div>
+<!-- /container --> 
+{% include "footer.html" %}
+<script type="text/javascript" src="{{site.assets}}/static/js/app.js?v=1.0.0"></script>
+</body>
+</html>

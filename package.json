@@ -1,5 +1,5 @@
 {
-  "name": "Fcm",
+  "name": "fcm",
   "description": "A fast, simple blog framework",
   "main": "lib",
   "bin": {

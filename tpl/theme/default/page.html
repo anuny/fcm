@@ -1,0 +1,5 @@
+{%- extends "layout/layout.html" %}
+{%- block container %}
+{ {{site.title}} } 建立于2011年，共有{{count.category}}个分类，{{count.tag}}个标签，{{count.page}}个页面，共发布了{{count.post}}篇文章
+{% autoescape false %}{{content}}{% endautoescape %}
+{% endblock -%}

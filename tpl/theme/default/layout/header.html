@@ -1,0 +1,15 @@
+<!-- header --> 
+<div class="header">
+  <h1><a href="{{site.url}}" alt="{{site.title}} - 杨飞的博客">{ {{site.title}} }</a></h1>
+  <p class="slogen">{{info.slogen||slogen||site.slogen}}</p>
+  <div class="menu">
+  	{% for key, menu in menus %}
+  		<li><a href="{{ menu.url }}" {% if name==menu.name %}class="active"{% endif %}><i class="icon {{ menu.icon }}"></i>{{ menu.title }}</a></li> 
+		{% endfor %}  
+	  <div class="setting-btn">
+	  	<a href="javascript:void(0)" class="icon icon-tw" id="setting-lang"></a>
+	  	<a href="javascript:void(0)" class="icon icon-light" id="setting-color"></a>
+	  </div>
+  </div>
+</div>
+<!-- /header --> 

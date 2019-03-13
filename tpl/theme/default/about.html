@@ -1,0 +1,24 @@
+{%- extends "layout/layout.html" %}
+{%- block container %}
+<div class="about">
+	<div class="aside">
+		<ul class="avatar">
+    	<img src="{{author.avatar}}" alt="{{author.description}}">
+   	</ul>
+		<ul>
+			<a href="{{site.url}}">{ {{site.title}} }</a>建立于2011年，共有{{count.category}}个分类，{{count.tag}}个标签，{{count.page}}个页面，共发布了{{count.post}}篇文章，最近更新于 {{updateTime}}。
+		</ul>
+    <ul class="social">
+      <a href="#">微博</a>
+      <a href="#">QQ</a>
+      <a href="https://wx2.qq.com/cgi-bin/mmwebwx-bin/webwxgetmsgimg?&MsgID=2441566371677743173&skey=%40crypt_cc1668c6_5ce967ce67e1380441979ba073555302" data-lightbox="image-2">微信</a>
+      <a href="#">豆瓣</a>
+      <a href="#">Email</a>
+      <a href="#">GitHub</a>
+    </ul>
+  </div>
+  <div class="markdown-body post-main">
+    {% autoescape false %}{{content}}{% endautoescape %}
+  </div>
+</div>
+{% endblock -%}

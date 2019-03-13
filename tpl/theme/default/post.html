@@ -1,0 +1,43 @@
+{%- extends "layout/layout.html" %}
+{%- block container %}
+<div class="post-main post-full">
+  <h2 class="post-title">{{ info.title }}</h2>
+  <div class="markdown-body post-content">
+  	{% autoescape false %}{{ content }}{% endautoescape %}
+  </div>
+
+  <div class="post-footer">
+    <div class="post-tool">
+      <div class="post-author"> 文/{{author.name}}</div>
+      <div class="post-share">
+        <p>分享到：</p>
+        <ul class="bdsharebuttonbox">
+          <li><a href="javascript:void(0)" class="icon icon-weibo weibo" data-cmd="tsina" title="分享到新浪微博"></a></li>
+          <li><a href="javascript:void(0)" class="icon icon-weixin weixin" data-cmd="weixin" title="分享到微信"></a></li>
+          <li><a href="javascript:void(0)" class="icon icon-qq qq" data-cmd="sqq" title="分享到QQ好友"></a></li>
+          <li><a href="javascript:void(0)" class="icon icon-qzone qzone" data-cmd="qzone" title="分享到QQ空间"></a></li>
+          <li><a href="javascript:void(0)" class="icon icon-douban douban" data-cmd="douban" title="分享到豆瓣网"></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="post-statement">
+      <time class="lunar-calendar" datetime="{{info.date}}" pubdate>{{info.date|date('Y-m-d')}}</time>
+    	<span class="view"><i class="icon icon-view"></i>15456</span>
+    	<span class="comment"><i class="icon icon-comment"></i><a href="#">354</a></span>
+			<span class="category"><i class="icon icon-category"></i><a href="{{category.url}}">{{category.title}}</a></span>
+			<span class="tag"><i class="icon icon-tag"></i>{% for key, t in tag %}<a href="{{t.url}}">{{t.title}}</a>{% endfor %}</span>
+			<p>
+        文章固定链接：<a href="{{ url }}">{{ url }}</a> 
+      </p>
+    </div>
+
+		{% if prev||next %}
+    <div class="post-near">
+      <li class="prev">{% if prev %}上一篇：<a href="{{prev.url}}">{{prev.info.title}}</a>{% else %}当前分类已是第一篇{% endif %}</li>
+      <li class="next">{% if next %}下一篇：<a href="{{next.url}}">{{next.info.title}}</a>{% else %}当前分类已是最后一篇{% endif %}</li>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock -%}
